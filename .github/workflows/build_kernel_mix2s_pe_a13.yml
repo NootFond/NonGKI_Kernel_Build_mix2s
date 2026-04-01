@@ -328,7 +328,7 @@ jobs:
                 echo "Please do not set a full URL in PATCH_SOURCE!"
                 false
               else
-                git clone https://github.com/${{ env.PATCHES_SOURCE }}.git -b ${{ env.PATCHES_BRANCH }} NonGKI_Kernel_Patches --depth=1 # It's not necessary.
+                git clone https://github.com/${{ env.PATCHES_SOURCE }}.git -b ${{ env.PATCHES_BRANCH }} $GITHUB_WORKSPACE/NonGKI_Kernel_Patches --depth=1 # It's not necessary.
               fi
             fi
             git clone $SUSFS_SOURCE -b $SUSFS_BRANCH susfs4ksu --depth=1
@@ -494,9 +494,11 @@ jobs:
         if: env.SUSFS_ENABLE == 'true' && env.SUSFS_FIXED == 'true'
         run: |
           cd $GITHUB_WORKSPACE/device_kernel/
-          cp ../NonGKI_Kernel_Patches/mix2s_evox_a15/cmdline_fixed.patch ./
-          cp ../NonGKI_Kernel_Patches/mix2s_evox_a15/task_mmu_fixed.patch ./
-          cp ../NonGKI_Kernel_Patches/mix2s_evox_a15/fdinfo_fixed.patch ./
+          ls $GITHUB_WORKSPACE/NonGKI_Kernel_Patches/
+          ls $GITHUB_WORKSPACE/NonGKI_Kernel_Patches/mix2s_evox_a15/
+          cp $GITHUB_WORKSPACE/NonGKI_Kernel_Patches/mix2s_evox_a15/cmdline_fixed.patch ./
+          cp $GITHUB_WORKSPACE/NonGKI_Kernel_Patches/mix2s_evox_a15/task_mmu_fixed.patch ./
+          cp $GITHUB_WORKSPACE/NonGKI_Kernel_Patches/mix2s_evox_a15/fdinfo_fixed.patch ./
 
           patch -p1 < cmdline_fixed.patch || true
           patch -p1 < task_mmu_fixed.patch || true
