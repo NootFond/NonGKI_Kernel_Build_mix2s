@@ -182,7 +182,7 @@ jobs:
           # Variable
           SUSFS_SOURCE=https://gitlab.com/simonpunk/susfs4ksu.git
           SUSFS_BRANCH=kernel-${{ env.KERNEL_VERSION }}
-          KERNEL_PATCHES=https://github.com/JackA1ltman/NonGKI_Kernel_Patches.git
+          KERNEL_PATCHES=https://github.com/NootFond/NonGKI_Kernel_Patches.git
 
           # Set MKBOOTIMG and KSU
           cd $GITHUB_WORKSPACE
